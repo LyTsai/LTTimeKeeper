@@ -13,13 +13,13 @@ class ViewController: UIViewController {
     var timeButtons : [UIButton]!
     var startButton : UIButton!
     var resetButton : UIButton!
-    var timer : NSTimer?
+    var timer : Timer?
     var signButton : UIButton!
     
     var isCounting : Bool = false {
         willSet{
             if newValue {
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("updateTimer:"), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer(_:))), userInfo: nil, repeats: true)
             }else {
                 timer?.invalidate()
                 timer = nil
@@ -47,10 +47,10 @@ class ViewController: UIViewController {
     //frame统一写到后面的布局里了，view直接调用，self省略
     func setupTimeLabel(){
         timeLabel = UILabel()
-        timeLabel.textColor = UIColor.whiteColor()
-        timeLabel.font = UIFont.systemFontOfSize(80)
-        timeLabel.backgroundColor = UIColor.blackColor()
-        timeLabel.textAlignment = NSTextAlignment.Center
+        timeLabel.textColor = UIColor.white
+        timeLabel.font = UIFont.systemFont(ofSize: 80)
+        timeLabel.backgroundColor = UIColor.black
+        timeLabel.textAlignment = NSTextAlignment.center
         timeLabel.text = "00 : 00"
         
         view.addSubview(timeLabel)
@@ -61,14 +61,14 @@ class ViewController: UIViewController {
         timeButtons = []
         for (title, sec) in timeButtonsInfo {
             let button = UIButton()
-            button.setTitle(title, forState: .Normal)
-            button.backgroundColor = UIColor.orangeColor()
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            button.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
+            button.setTitle(title, for: UIControlState())
+            button.backgroundColor = UIColor.orange
+            button.setTitleColor(UIColor.white, for: UIControlState())
+            button.setTitleColor(UIColor.black, for: .highlighted)
             
             button.tag = sec
             
-            button.addTarget(self, action: Selector("timeButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(ViewController.timeButtonTapped(_:)), for: UIControlEvents.touchUpInside)
             
             view.addSubview(button)
             timeButtons.append(button)
@@ -77,58 +77,58 @@ class ViewController: UIViewController {
     
     func setupActionButtons(){
         startButton = UIButton()
-        startButton.backgroundColor = UIColor.redColor()
-        startButton.setTitle("Start", forState: UIControlState.Normal)
-        startButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        startButton.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
-        startButton.addTarget(self, action: Selector("startButtonTapped:"), forControlEvents: .TouchUpInside)
+        startButton.backgroundColor = UIColor.red
+        startButton.setTitle("Start", for: UIControlState())
+        startButton.setTitleColor(UIColor.white, for: UIControlState())
+        startButton.setTitleColor(UIColor.black, for: .highlighted)
+        startButton.addTarget(self, action: #selector(ViewController.startButtonTapped(_:)), for: .touchUpInside)
         view.addSubview(startButton)
         
         resetButton = UIButton()
-        resetButton.backgroundColor = UIColor.redColor()
-        resetButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        resetButton.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
-        resetButton.setTitle("Reset", forState: .Normal)
-        resetButton.addTarget(self, action: Selector("resetButtonTapped"), forControlEvents: .TouchUpInside)
+        resetButton.backgroundColor = UIColor.red
+        resetButton.setTitleColor(UIColor.white, for: UIControlState())
+        resetButton.setTitleColor(UIColor.black, for: .highlighted)
+        resetButton.setTitle("Reset", for: UIControlState())
+        resetButton.addTarget(self, action: #selector(ViewController.resetButtonTapped), for: .touchUpInside)
         view.addSubview(resetButton)
     }
     
     func setupSignButton(){
         signButton = UIButton()
-        signButton.backgroundColor = UIColor.blueColor()
-        signButton.setTitle("+", forState: .Normal)
-        signButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        signButton.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
-        signButton.addTarget(self, action: Selector("changeSign"), forControlEvents: .TouchUpInside)
+        signButton.backgroundColor = UIColor.blue
+        signButton.setTitle("+", for: UIControlState())
+        signButton.setTitleColor(UIColor.white, for: UIControlState())
+        signButton.setTitleColor(UIColor.black, for: .highlighted)
+        signButton.addTarget(self, action: #selector(ViewController.changeSign), for: .touchUpInside)
         
         view.addSubview(signButton)
     }
 
     //布局
     override func viewDidLayoutSubviews() {
-        timeLabel.frame = CGRectMake(10, 40, view.bounds.size.width-20, 120)
+        timeLabel.frame = CGRect(x: 10, y: 40, width: view.bounds.size.width-20, height: 120)
         
         let width = view.bounds.size.width - 20 - CGFloat(timeButtons.count) * 64.0
         let gap = width / CGFloat(timeButtons.count - 1)
         
-        signButton.frame = CGRectMake(view.bounds.size.width * 0.5 - 100, view.bounds.height-170, 40, 40)
+        signButton.frame = CGRect(x: view.bounds.size.width * 0.5 - 100, y: view.bounds.height-170, width: 40, height: 40)
     
-        for (index, button) in timeButtons.enumerate() {
+        for (index, button) in timeButtons.enumerated() {
             let buttonLeft = 10.0 + CGFloat(index) * (64.0 + gap)
-            button.frame = CGRectMake(buttonLeft, view.bounds.height - 120.0, 64, 44)
+            button.frame = CGRect(x: buttonLeft, y: view.bounds.height - 120.0, width: 64, height: 44)
         }
         
-        startButton.frame = CGRectMake(10, view.bounds.size.height - 60, view.bounds.size.width - 20 - 100, 44)
-        resetButton.frame = CGRectMake(10 + startButton.frame.width + 20, startButton.frame.origin.y, 80, 44)
+        startButton.frame = CGRect(x: 10, y: view.bounds.size.height - 60, width: view.bounds.size.width - 20 - 100, height: 44)
+        resetButton.frame = CGRect(x: 10 + startButton.frame.width + 20, y: startButton.frame.origin.y, width: 80, height: 44)
     }
     
     func changeSign() {
         let sign = signButton.titleLabel?.text
-        sign == "+" ? signButton.setTitle("-", forState: .Normal): signButton.setTitle("+", forState: .Normal)
+        sign == "+" ? signButton.setTitle("-", for: UIControlState()): signButton.setTitle("+", for: UIControlState())
     }
     
     //点击事件，每段增加
-    func timeButtonTapped(button : UIButton){
+    func timeButtonTapped(_ button : UIButton){
         if signButton.titleLabel?.text == "+" {
             remainingSeconds += button.tag
         } else {
@@ -136,39 +136,39 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateTimer(timer : NSTimer){
-        remainingSeconds--
+    func updateTimer(_ timer : Timer){
+        remainingSeconds -= 1
         if remainingSeconds <= 0 {
             isCounting = false
-            let alertVC = UIAlertController(title: "Time is up", message: "", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "I Know", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            let alertVC = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
+            let action = UIAlertAction(title: "I Know", style: UIAlertActionStyle.default, handler: { (action) -> Void in
                 print("Tapped")
             })
             alertVC.addAction(action)
-            self.presentViewController(alertVC, animated: true, completion: nil)
+            self.present(alertVC, animated: true, completion: nil)
         }
     }
     
-    func setSettingButtonEnabled(enable : Bool){
+    func setSettingButtonEnabled(_ enable : Bool){
         for button in timeButtons {
-            button.enabled = enable
+            button.isEnabled = enable
             button.alpha = enable ? 1.0 : 0.3
         }
-        resetButton.enabled = enable
+        resetButton.isEnabled = enable
         resetButton.alpha = enable ? 1.0 : 0.3
         let title = enable ? "Start" : "Pause"
-        startButton.setTitle(title, forState: .Normal)
+        startButton.setTitle(title, for: UIControlState())
     }
     
     
-    func startButtonTapped(button : UIButton){
+    func startButtonTapped(_ button : UIButton){
         if remainingSeconds < 0 {
-            let alertVC = UIAlertController(title: "Wrong Time Set", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-            let action = UIAlertAction(title: "Reset", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            let alertVC = UIAlertController(title: "Wrong Time Set", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let action = UIAlertAction(title: "Reset", style: UIAlertActionStyle.default, handler: { (action) -> Void in
                 self.remainingSeconds = 0
             })
             alertVC.addAction(action)
-            self.presentViewController(alertVC, animated: true, completion: nil)
+            self.present(alertVC, animated: true, completion: nil)
             
             return
         }
@@ -178,7 +178,7 @@ class ViewController: UIViewController {
         if isCounting {
             createAndFireLocalNotificationAfterSeconds(Double(remainingSeconds))
         }else  {
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
+            UIApplication.shared.cancelAllLocalNotifications()
         }
     }
     
@@ -186,14 +186,14 @@ class ViewController: UIViewController {
         remainingSeconds = 0
     }
     
-    func createAndFireLocalNotificationAfterSeconds(seconds : NSTimeInterval){
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+    func createAndFireLocalNotificationAfterSeconds(_ seconds : TimeInterval){
+        UIApplication.shared.cancelAllLocalNotifications()
         let notification = UILocalNotification()
         
-        notification.fireDate = NSDate(timeIntervalSinceNow:seconds)
-        notification.timeZone = NSTimeZone.systemTimeZone()
+        notification.fireDate = Date(timeIntervalSinceNow:seconds)
+        notification.timeZone = TimeZone.current
         notification.alertBody = "Time is up!"
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
     override func didReceiveMemoryWarning() {

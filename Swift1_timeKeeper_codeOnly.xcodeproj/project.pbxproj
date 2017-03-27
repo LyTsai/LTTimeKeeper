@@ -190,13 +190,17 @@
 				TargetAttributes = {
 					197AC1921CAADE63007E7C4A = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 8D66FRV9W5;
+						LastSwiftMigration = 0820;
 					};
 					197AC1A61CAADE64007E7C4A = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 197AC1921CAADE63007E7C4A;
 					};
 					197AC1B11CAADE64007E7C4A = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 197AC1921CAADE63007E7C4A;
 					};
 				};
@@ -385,10 +389,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8D66FRV9W5;
 				INFOPLIST_FILE = Swift1_timeKeeper_codeOnly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnly";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -396,10 +402,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8D66FRV9W5;
 				INFOPLIST_FILE = Swift1_timeKeeper_codeOnly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnly";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -411,6 +419,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnlyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift1_timeKeeper_codeOnly.app/Swift1_timeKeeper_codeOnly";
 			};
 			name = Debug;
@@ -423,6 +432,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnlyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift1_timeKeeper_codeOnly.app/Swift1_timeKeeper_codeOnly";
 			};
 			name = Release;
@@ -434,6 +444,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnlyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Swift1_timeKeeper_codeOnly;
 				USES_XCTRUNNER = YES;
 			};
@@ -446,6 +457,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LT.Swift1-timeKeeper-codeOnlyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Swift1_timeKeeper_codeOnly;
 				USES_XCTRUNNER = YES;
 			};
@@ -470,6 +482,7 @@
 				197AC1BD1CAADE64007E7C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		197AC1BE1CAADE64007E7C4A /* Build configuration list for PBXNativeTarget "Swift1_timeKeeper_codeOnlyTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +491,7 @@
 				197AC1C01CAADE64007E7C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		197AC1C11CAADE64007E7C4A /* Build configuration list for PBXNativeTarget "Swift1_timeKeeper_codeOnlyUITests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +500,7 @@
 				197AC1C31CAADE64007E7C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
